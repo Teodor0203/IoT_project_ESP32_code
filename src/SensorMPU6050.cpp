@@ -24,9 +24,8 @@ void SensorMPU6050::readData(){
 
     Serial.begin(115200);
     while (!Serial)
-      delay(10); // will pause Zero, Leonardo, etc until serial console opens
-
-
+      delay(10); 
+      
     // Try to initialize!
     if (!mpu.begin()) {
 
@@ -103,6 +102,7 @@ void SensorMPU6050::readData(){
     if (isnan(a.acceleration.x) || isnan(a.acceleration.y) || isnan(a.acceleration.z)) {
     docMPU6050["dataMPU6050"]["noData"] = "Failed to read data from MPU6050 sensor!";
     return;
+    }
   }
   
   const double JUMP_THRESHOLD = -3.0;
@@ -115,7 +115,7 @@ void SensorMPU6050::readData(){
   if(zAcceleration < JUMP_THRESHOLD)
   {
     jumpDetected = 1;
-    sensorGPS.readData();
+    sensorGPS.readData(); //coordinates where jump is detected.
   }
   else if(zAcceleration > LANDING_THRESHOLD)
   {
