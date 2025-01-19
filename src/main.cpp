@@ -27,17 +27,16 @@ unsigned long MPU6050_interval = 100UL;
 unsigned long NEO6M_interval = 5000UL;
 #pragma endregion MillisInterval
 
-//Esantionare!!
 
 void setup() {
   
   serialBT.begin("ESP32");
   delay(2000);
   serialBT.println("Hello :D");
-  sensorRFP602.readData();
-  sensorRFP602No2.readData();
+  //sensorRFP602.readData();
+  //sensorRFP602No2.readData();
   sensorMPU6050.readData();
-  sensorGPS.readData();
+  //sensorGPS.readData();
 }
 
 void loop() {
@@ -52,21 +51,21 @@ void loop() {
   
   if(currentMillis - previousMillisRFP602 > RFP602_interval)
   {
-    sensorRFP602.readData();
+    //sensorRFP602.readData();
 
     previousMillisRFP602 = currentMillis;
   }
 
   if(currentMillis - previousMillisRFP602_2 > RFP602_interval_2)
   {
-    sensorRFP602No2.readData();
+//    sensorRFP602No2.readData();
 
     previousMillisRFP602_2 = currentMillis;
   }
 
   if(currentMillis - previousMillisNEO6M > NEO6M_interval)
   {
-    sensorGPS.readData();
+    //sensorGPS.readData();
 
     previousMillisNEO6M = currentMillis;
   }
